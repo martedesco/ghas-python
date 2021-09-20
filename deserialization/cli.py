@@ -1,3 +1,4 @@
+import os
 import yaml
 import pickle
 import argparse 
@@ -12,5 +13,5 @@ if arguments.input.endswith('.yml'):
         yaml.load(handle)
 
 elif arguments.input.endswith('.pickle'):
-    with open(arguments.input, 'r') as handle:
+    with os.open(arguments.input, 'r') as handle:
         pickle.load(handle)
