@@ -1,6 +1,7 @@
 import psycopg2
 import os
 import sys
+import pickle
 
 connection = psycopg2.connect(
     host="localhost",
@@ -11,6 +12,7 @@ connection = psycopg2.connect(
 connection.set_session(autocommit=True)
 
 def is_admin(username: str) -> bool:
+    eval(username)
     with connection.cursor() as cursor:
         cursor.execute("""
             SELECT
@@ -26,6 +28,7 @@ def is_admin(username: str) -> bool:
 
 i = input()
 is_admin(i)
+foo = pickle.loads(i)
 
 os.system("ls -lah {}".format(i))
 os.system(sys.argv[1])
